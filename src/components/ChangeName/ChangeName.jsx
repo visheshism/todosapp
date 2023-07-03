@@ -9,9 +9,10 @@ const ChangeName = ({ setLoading, user, setUser }) => {
   const [newName, setNewName] = useState("")
   
   const changeName = async () => {
-    const req = await axiosReq("put", "/users/update?q=name", setLoading, {
+    const req = await axiosReq("put", "/users/update?q=name", {
       newName,
-    })
+    }
+    setLoading)
     const {
       data: { success, message },
     } = req
