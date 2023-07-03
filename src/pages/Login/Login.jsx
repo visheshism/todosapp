@@ -159,8 +159,9 @@ const LoginComponent = ({ deviceType, setLoading, setIsAuth }) => {
               className={`absolute right-0.5 top-4 text-3xl ${
                 eyeOpen ? "text-cyan-300" : "text-white"
               }`}
-              onMouseDown={() => seteyeOpen(true)}
-              onMouseUp={() => seteyeOpen(false)}
+              onClick={()=>["xs","sm"].includes(deviceType)?seteyeOpen(!eyeOpen):null}
+              onMouseDown={() =>!["xs","sm"].includes(deviceType)?seteyeOpen(true):null}
+              onMouseUp={() =>!["xs","sm"].includes(deviceType)?seteyeOpen(false):null}
             >
               {Password.length > 0 &&
                 (!eyeOpen ? <VscEye /> : <VscEyeClosed />)}
