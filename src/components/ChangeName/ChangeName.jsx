@@ -10,8 +10,8 @@ const ChangeName = ({ setLoading, user, setUser }) => {
   
   const changeName = async () => {
     const req = await axiosReq("put", "/users/update?q=name", {
-      newName,
-    }
+      newName
+    },
     setLoading)
     const {
       data: { success, message },
