@@ -129,6 +129,7 @@ const LoggedInUser = ({
           id="searchBox"
           onBlur={() => setSearchFocus(false)}
         >
+        {deviceType !== "xs" && (
           <FaSearch
             className="text-slate-400 mr-1 absolute left-1.5 z-10"
             onClick={() => {
