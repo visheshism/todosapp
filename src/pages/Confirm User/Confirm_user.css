@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css?family=Muli:300,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700;800;900;1000&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+@layer utlities {
+  .font-Nsans {
+    font-family: "Nunito Sans", sans-serif;
+  }
+
+  .confirmUser {
+    animation: grow forwards 1s;
+  }
+
+  @keyframes grow {
+    from {
+      opacity: 0;
+      transform: scale(0%);
+    }
+  }
+}

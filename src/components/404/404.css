@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600&family=Ysabeau+Infant:wght@300;400;500&display=swap');
+
+.font-Belanosima{
+  font-family: 'Belanosima',sans-serif;
+}
+
+.font-Ysabeau{
+  font-family: 'Ysabeau Infant',sans-serif;
+}

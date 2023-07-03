@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&family=PT+Sans:wght@400;700&display=swap");
+
+@layer components {
+  .div-bg-gradient {
+    background: #2c3e50;
+    background: -webkit-linear-gradient(120deg, #fd746c, #2c3e50);
+    background: linear-gradient(30deg, #fd746c, #2c3e50);
+  }
+
+  .icon-wrapper {
+    transform: translateY(-60%);
+  }
+
+  .shadow-settings {
+    -webkit-box-shadow: 1px 6px 24px 8px rgba(0, 0, 0, 0.58);
+    box-shadow: 1px 6px 24px 8px rgba(0, 0, 0, 0.58);
+  }
+
+  .shadow-deleteAcc {
+    -webkit-box-shadow: 1px 6px 22px 10px rgba(0, 0, 0, 0.37);
+    box-shadow: 1px 6px 22px 10px rgba(0, 0, 0, 0.37);
+  }
+
+  .font-oxy {
+    font-family: "Oxygen", sans-serif;
+  }
+
+  .font-pt {
+    font-family: "PT Sans", sans-serif;
+  }
+}

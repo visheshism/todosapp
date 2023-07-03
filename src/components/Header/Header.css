@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .font-Montserrat{
+        font-family: "Montserrat",sans-serif;
+    }
+    @keyframes dropdown {
+        0% {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      
+      .animate-dropdown {
+        animation: dropdown 1002ms ease-in-out;
+      }
+}
