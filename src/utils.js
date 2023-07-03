@@ -11,8 +11,8 @@ const axiosReq = async (
   checkLoggedIn = true
 ) => {
   
-  const server = process.env.REACT_APP_BAKEND_LINK
-  
+  const server = process.env.REACT_APP_BACKEND_LINK
+
   let data = JSON.stringify(body)
 
   let config = {
