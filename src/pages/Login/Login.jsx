@@ -102,7 +102,7 @@ const LoginComponent = ({ deviceType, setLoading, setIsAuth }) => {
 
   return (
     <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center overflow-hidden bg-slate-100 text-white [font-family:'Muli']">
-      <div className="bg-[rgba(38,85,124,0.79)] scale-95 sm:scale-100 min-w-[90%] sm:min-w-[0%] py-12 px-10 rounded-md shadow-2xl shadow-slate-600">
+      <div className={`bg-[rgba(38,85,124,0.79)] scale-95 sm:scale-100 ${deviceType === "xs" && "min-w-[90%]"} py-12 px-10 rounded-md shadow-2xl shadow-slate-600`}>
         <h1 className="mb-4 text-3xl font-bold tracking-wide animate-transformOpaque">
           Welcome Back !
         </h1>

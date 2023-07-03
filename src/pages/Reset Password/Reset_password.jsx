@@ -11,7 +11,7 @@ import { axiosReq } from "../../utils"
 const Reset_password = () => {
   const { setLoading } = useContext(ctx)
   let currentComponent
-  
+
   const [step, setStep] = useState(1)
   const [success, setSuccess] = useState(false)
   const [showBtn, setShowBtn] = useState(true)
@@ -130,10 +130,7 @@ const Reset_password = () => {
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-indigo-400 flex justify-center items-center">
-      <div
-        className="px-8 md:px-10 pt-10 pb-6 bg-slate-100 rounded-sm shadow-lg shadow-slate-600  min-w-[80%] sm:min-w-[0%] md:min-w-[420px] max-w-[320px] lg:max-w-[520px] passReset -mt-12"
-        id="divme"
-      >
+      <div class="passReset -mt-12 rounded-sm bg-slate-100 px-8 pb-6 pt-10 shadow-lg shadow-slate-600 md:px-10 min-w-[300px] w-[80%] max-w-[380px] md:min-w-[420px] lg:max-w-[500px]">
         {currentComponent}
       </div>
     </div>
@@ -186,7 +183,7 @@ const Component2 = ({
   otpHandler,
   showBtn,
 }) => {
-  
+
   const codes = Array.from({ length: 4 }, (_, idx) => {
     const handleKeyDown = (e, idx) => {
       if (e.key >= "0" && e.key <= "9") {
@@ -261,7 +258,7 @@ const Component3 = ({
   setConfirmPassword,
   setNewPassword,
 }) => {
-  
+
   const [newPasswordValid, setNewPasswordValid] = useState(false)
   const [confirmPasswordValid, setConfirmPasswordValid] = useState(false)
 
@@ -292,9 +289,8 @@ const Component3 = ({
           autoComplete="off"
           autoCorrect="off"
           spellCheck="false"
-          className={`${
-            !newPasswordValid ? "text-red-400" : ""
-          } mx-auto font-Nsans flex max-w-full min-w-full focus:outline-none valid:outline-none pl-2.5 pr-8 py-2 rounded-md border-slate-400 border-2 tracking-wider mt-4 mb-2 placeholder:tracking-normal`}
+          className={`${!newPasswordValid ? "text-red-400" : ""
+            } mx-auto font-Nsans flex max-w-full min-w-full focus:outline-none valid:outline-none pl-2.5 pr-8 py-2 rounded-md border-slate-400 border-2 tracking-wider mt-4 mb-2 placeholder:tracking-normal`}
           placeholder="Enter new password"
           value={newPassword}
           onChange={(e) => handleInputChange(e, setNewPassword)}
@@ -312,9 +308,8 @@ const Component3 = ({
           autoComplete="off"
           autoCorrect="off"
           spellCheck="false"
-          className={`${
-            !confirmPasswordValid ? "text-red-400" : ""
-          } mx-auto font-Nsans flex max-w-full min-w-full focus:outline-none valid:outline-none pl-2.5 pr-8 py-2 mt-4 mb-4 rounded-md border-slate-400 border-2 tracking-wider placeholder:tracking-normal`}
+          className={`${!confirmPasswordValid ? "text-red-400" : ""
+            } mx-auto font-Nsans flex max-w-full min-w-full focus:outline-none valid:outline-none pl-2.5 pr-8 py-2 mt-4 mb-4 rounded-md border-slate-400 border-2 tracking-wider placeholder:tracking-normal`}
           placeholder="Confirm new password"
           value={confirmPassword}
           onChange={(e) => handleInputChange(e, setConfirmPassword)}

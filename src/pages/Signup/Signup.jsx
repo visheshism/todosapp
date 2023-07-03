@@ -28,7 +28,7 @@ const Signup = () => {
 
   return (
     <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center overflow-hidden bg-slate-100 text-white [font-family:'Muli']">
-      <div className="bg-[rgba(38,85,124,0.79)]  scale-95 sm:scale-100 min-w-[90%] sm:min-w-[0%] py-12 px-10 rounded-md shadow-2xl shadow-slate-600">
+      <div className={`bg-[rgba(38,85,124,0.79)] scale-95 sm:scale-100 ${deviceType === "xs" && "min-w-[90%]"} py-12 px-10 rounded-md shadow-2xl shadow-slate-600`}>
         <h1 className="text-center mb-9 text-2xl font-bold tracking-wide animate-transformOpaqueUp">
           Create Your Account
         </h1>
@@ -93,13 +93,12 @@ const Signup = () => {
               required
               autoComplete="off"
               autoCorrect="off"
-              className={`${
-                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(
-                  Password
-                )
+              className={`${/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(
+                Password
+              )
                   ? "text-white"
                   : "text-red-400"
-              } bg-transparent border-0 border-b-[2px] w-full py-4 px-0 text-[18px] focus:outline-none valid:outline-none focus:border-b-[#4cbfe5] valid:border-b-[#4cbfe5]`}
+                } bg-transparent border-0 border-b-[2px] w-full py-4 px-0 text-[18px] focus:outline-none valid:outline-none focus:border-b-[#4cbfe5] valid:border-b-[#4cbfe5]`}
               value={Password}
               onChange={(e) => handleInputChange(e, setPassword)}
               pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$"
