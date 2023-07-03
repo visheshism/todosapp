@@ -21,17 +21,6 @@ The built files will be placed in the build directory.
 ## Backend Repository
 The backend repository for the Todos app can be found at [backend-repo](https://github.com/visheshism/todoapp_backend).
 
-## Deployment Strategy
-
-We have implemented a deployment strategy that combines the use of two platforms, Vercel and Render, to optimize performance and email functionality. 
-
-- Vercel Deployment: By default, our application is set up to use Vercel for backend deployment. Vercel provides exceptional speed and efficiency, ensuring a fast and responsive user experience for most parts of the application.
-
-- Render Deployment: Additionally, we have integrated Render specifically for email-related endpoints. Render offers reliable email functionality, ensuring proper email delivery, which is crucial for applications that rely heavily on email communications.
-
-This deployment strategy has been implemented based on our specific requirements, but you have the freedom to customize and use a single deployment that meets your specific needs. If you prioritize both speed and email functionality, we recommend deploying the application on a platform that provides the necessary performance and reliable email services.
-
-
 ## Functionality
 The Todos app UI provides the following functionality:
 

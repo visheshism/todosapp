@@ -51,7 +51,7 @@ function App() {
     const checkIsAuth = async () => {
         instance === 0 && setLoading(true)
         instance++
-      const res=await axiosReq("get", "/users/me", {}, null, null, false)
+      const res=await axiosReq("get", "/users/me", {}, null, false)
       if(res.data.success){
           setIsAuth(true)
           instance === 1 && setLoading(false)

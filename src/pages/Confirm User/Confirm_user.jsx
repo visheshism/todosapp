@@ -27,8 +27,7 @@ const Confirm_email = () => {
         "post",
         `/users/confirm_email?user=${userParam}&token=${tokenParam}`,
         { url: `${window.location.origin}/login` },
-        setLoading,
-        true
+        setLoading
       )
       const {
         data: { success, message },

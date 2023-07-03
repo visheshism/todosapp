@@ -28,8 +28,7 @@ const Reset_password = () => {
       `/users/reset_password?mail=${Email}&url=${window.location.origin}`,
 
       {},
-      setLoading,
-      true
+      setLoading
     )
 
     const {

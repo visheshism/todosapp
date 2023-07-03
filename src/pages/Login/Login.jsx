@@ -75,8 +75,7 @@ const LoginComponent = ({ deviceType, setLoading, setIsAuth }) => {
       "get",
       `/users/confirm_email?mail=${Email}&url=${encodeURIComponent(url)}`,
       {},
-      setLoading,
-      true
+      setLoading
     )
     const { data } = req
     success = data.success

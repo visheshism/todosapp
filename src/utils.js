@@ -8,15 +8,11 @@ const axiosReq = async (
   url,
   body = {},
   setLoading,
-  email = false,
   checkLoggedIn = true
 ) => {
   
-  // Note: Here instead of two deployments, only one is enough if it is fast & supports email feature. Make sure to modify the code wherever required.
+  const server = process.env.REACT_APP_BAKEND_LINK
   
-  const server = !email
-    ? process.env.REACT_APP_VERCEL_LINK
-    : process.env.REACT_APP_RENDER_LINK
   let data = JSON.stringify(body)
 
   let config = {
