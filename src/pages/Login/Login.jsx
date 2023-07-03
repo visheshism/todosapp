@@ -62,9 +62,6 @@ const LoginComponent = ({ deviceType, setLoading, setIsAuth }) => {
     if (success) {
       setIsAuth(true)
       navigate("/")
-    } else {
-      handleHotToast(false, "Something went wrong, please try again.")
-      setLoading(false)
     }
   }
 
