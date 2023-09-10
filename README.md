@@ -1,6 +1,17 @@
 # Todos App UI
 This is the frontend user interface for the Todos app, built using React & Tailwindcss.
 
+## Tech Stack
+- React.js (for frontend rendering)
+- Tailwind CSS (for styling)
+- Craco (for bundling Tailwind CSS)
+- Axios (for backend requests)
+- react-router-dom (for routing)
+- react-toastify (for notifications)
+- react-hot-toast (for toasts)
+- react-icons (for icons)
+- react-loading-skeleton (for skeleton animation)
+
 ## Installation
 1. Clone the repository:
 `git clone https://github.com/visheshism/todosapp.git`
