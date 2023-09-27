@@ -202,6 +202,7 @@ const LoggedInUser = () => {
               setLoading,
               currentMode,
               setCurrentMode,
+              deviceType
             }}
           />
         </div>

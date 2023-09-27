@@ -36,6 +36,7 @@ const TodoForm = ({ reqs }) => {
     setLoading,
     currentMode: mode,
     setCurrentMode,
+    deviceType
   } = reqs
 
   const {
@@ -200,7 +201,7 @@ const TodoForm = ({ reqs }) => {
       <>
         <div className="flex items-center justify-center min-h-screen">
           <div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center backdrop-blur-sm">
-            <div className="relative bg-white p-4 rounded min-w-[320px]">
+            <div className="relative bg-white p-4 rounded min-w-[320px] lg:w-[360px] 2xl:w-[380px]">
               <div className="absolute inset-0 bg-gray-300 opacity-25 z-[-1]" />
               <h2 className="text-lg font-semibold mb-4">
                 {mode === "create" ? "Create Todo" : "Todo"}
@@ -211,7 +212,7 @@ const TodoForm = ({ reqs }) => {
                 </label>
                 {!EditingMode && mode !== "create" ? (
                   <textarea
-                    rows={Math.ceil(title.length / 22)}
+                    rows={Math.ceil(title.length / (window.innerWidth >= 1536 ? 39 : ["xs", "sm", "md"].includes(deviceType) ? 32 : 35))}
                     value={title}
                     maxLength={80}
                     readOnly
@@ -233,11 +234,10 @@ const TodoForm = ({ reqs }) => {
                       )
                     }
                     maxLength={80}
-                    className={`border border-gray-300 px-3 py-2 rounded mb-4 w-full read-only:border-red-400 font-Manrope ${
-                      EditingMode
+                    className={`border border-gray-300 px-3 py-2 rounded mb-4 w-full read-only:border-red-400 font-Manrope ${EditingMode
                         ? "focus:outline-slate-500"
                         : "focus:outline-none"
-                    }`}
+                      }`}
                     spellCheck="false"
                     autoComplete="off"
                     autoCorrect="off"
@@ -250,50 +250,50 @@ const TodoForm = ({ reqs }) => {
                 )}
               </div>
 
-              <div>
-                <label htmlFor="description" className="block mb-2">
-                  Description:
-                </label>
-                <textarea
-                  rows={
-                    EditingMode || mode === "create" || description.length > 155
-                      ? 6
-                      : Math.ceil(description.length / 22) + 1
-                  }
-                  value={description}
-                  onChange={(e) =>
-                    setDescription(
-                      e.target.value.trim().length < 1 ? "" : e.target.value
-                    )
-                  }
-                  maxLength={400}
-                  readOnly={mode === "read" && !EditingMode ? "readonly" : null}
-                  className={`resize-none w-full border border-gray-300 px-3 py-2 rounded mb-4 read-only:border-green-400 break-all font-Manrope customScroller ${
-                    EditingMode
-                      ? "focus:outline-slate-500"
-                      : "focus:outline-none"
-                  }`}
-                  spellCheck="false"
-                  autoComplete="off"
-                  autoCorrect="off"
-                />
-                {(mode === "create" || EditingMode) && (
-                  <span className="flex justify-end text-sm -mt-4">
-                    {description.length}/400
-                  </span>
-                )}
-              </div>
+              {(EditingMode || mode === "create" || description.length > 0) && (
+                <div>
+                  <label htmlFor="description" className="block mb-2">
+                    Description:
+                  </label>
+                  <textarea
+                    rows={
+                      EditingMode || mode === "create" || description.length > 155
+                        ? 6
+                        : Math.ceil(description.length / 22) + 1
+                    }
+                    value={description}
+                    onChange={(e) =>
+                      setDescription(
+                        e.target.value.trim().length < 1 ? "" : e.target.value
+                      )
+                    }
+                    maxLength={400}
+                    readOnly={mode === "read" && !EditingMode ? "readonly" : null}
+                    className={`resize-none w-full border border-gray-300 px-3 py-2 rounded mb-4 read-only:border-green-400 break-all font-Manrope customScroller ${EditingMode
+                        ? "focus:outline-slate-500"
+                        : "focus:outline-none"
+                      }`}
+                    spellCheck="false"
+                    autoComplete="off"
+                    autoCorrect="off"
+                  />
+                  {(mode === "create" || EditingMode) && (
+                    <span className="flex justify-end text-sm -mt-4">
+                      {description.length}/400
+                    </span>
+                  )}
+                </div>
+              )}
               <div>
                 <label htmlFor="option" className="block mb-2">
-                  Option:
+                  Category:
                 </label>
                 <select
                   value={selectedOption}
                   onChange={handleChangeOption}
                   disabled={
                     (mode === "read" && !EditingMode) ||
-                    title.length < 1 ||
-                    description < 1
+                    title.length < 1
                   }
                   className="border border-gray-300 px-3 py-2 rounded mb-4 w-full disabled:text-black font-Manrope focus:outline-slate-500"
                 >
@@ -309,7 +309,7 @@ const TodoForm = ({ reqs }) => {
                 {mode === "create" ? (
                   <button
                     onClick={handleSave}
-                    disabled={!title.length > 0 || !description.length > 0}
+                    disabled={!title.length > 0}
                     className="bg-green-500 text-white px-4 py-2 rounded"
                   >
                     Create Todo
