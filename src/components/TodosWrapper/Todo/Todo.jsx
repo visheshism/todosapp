@@ -14,18 +14,14 @@ const Todo = ({ todo, toggleTodo, handleDivClick, deviceType }) => {
         />
 
         <div
-          className="ml-2 flex flex-col space-y-1 w-full pr-4 break-all "
+          className="ml-2 flex flex-col space-y-1 w-full pr-4 break-all truncate"
           onClick={handleDivClick}
         >
-          <p className="text-lg font-semibold ">
-            {title.length > 28
-              ? title.slice(0, deviceType === "xs" ? 27 : 50) + " . . ."
-              : title}
+          <p className="text-lg font-semibold w-full truncate">
+            {title}
           </p>
-          <p className="text-gray-600">
-            {description.length > 150
-              ? description.slice(0, deviceType === "xs" ? 69 : 147) + "..."
-              : description}
+          <p className="text-gray-600 w-full truncate">
+            {description}
           </p>
         </div>
       </div>
