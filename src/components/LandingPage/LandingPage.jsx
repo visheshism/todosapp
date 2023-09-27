@@ -16,10 +16,10 @@ const LandingPage = () => {
         <img
           src={Bg}
           alt="Background"
-          className="absolute object-contain w-full h-full opacity-75 -z-10 backdrop-blur-md inset-0"
-        />
-
-        <h1 className="text-2xl sm:text-4xl font-bold mt-2 mb-6 text-white px-4">
+          className="absolute object-contain w-full h-full opacity-80 -z-10 backdrop-blur-md inset-0"
+          />
+          
+        <h1 className="text-2xl sm:text-[34px] sm:leading-[38px] 2xl:text-4xl font-bold mt-2 mb-6 text-white px-6">
           TodosApp - Master Your Day with Ease
         </h1>
         <h2 className="text-sm sm:text-lg text-cyan-400 sm:text-orange-300 mb-8 font-Montserrat px-2.5 text-center">
@@ -27,14 +27,15 @@ const LandingPage = () => {
         </h2>
         <div className="border-t border-gray-400 w-56 md:mb-28 mb-6 sm:mb-10"></div>
         <div className="flex flex-col-reverse md:flex-col">
-          <p className="text-center text-rose-600 sm:text-rose-800 mt-2 text-lg sm:text-2xl font-semibold font-sans px-1.5 sm:mb-4 mb-2">
+          <p className="text-center text-rose-600 sm:text-rose-700 lg:sm:text-rose-500 mt-2 text-lg sm:text-2xl font-semibold font-sans px-1.5 sm:mb-4 mb-2">
             Sign up today and take control of your tasks!
           </p>
 
+            {/*  old-classes:bottom-[31%] sm:bottom-[44%] lg:bottom-[26%]  */}
           <Link
             to={"/signup"}
-            className="mx-auto bottom-[31%] sm:bottom-[44%] lg:bottom-[26%] bg-blue-500 hover:bg-blue-600 text-white font-semibold font-Montserrat tracking-wide py-2 sm:py-3 px-3 sm:px-5 mt-2 sm:mt-6 md:mt-8 rounded text-sm sm:text-base md:text-lg flex"
-          >
+            className="mx-auto bg-blue-500 hover:bg-blue-600 text-white font-semibold font-Montserrat tracking-wide py-2 sm:py-3 px-3 sm:px-5 mt-2 sm:mt-6 md:mt-8 md:-mb-8 rounded text-sm sm:text-base md:text-lg flex"
+            >
             Get Started
           </Link>
         </div>
