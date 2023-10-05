@@ -224,6 +224,10 @@ const Sidebar = ({
           } = req
           handleToastify(success, message, 2500)
           if (success) {
+            setCategories(
+              categories.map((categ) => (categ === initialText ? text : categ))
+            )
+
             setTodos(
               todos.map((todo) => {
                 todo.categ === initialText
@@ -232,10 +236,6 @@ const Sidebar = ({
 
                 return todo
               })
-            )
-
-            setCategories(
-              categories.map((categ) => (categ === initialText ? text : categ))
             )
 
             if (categParam && categParam === initialText) {
