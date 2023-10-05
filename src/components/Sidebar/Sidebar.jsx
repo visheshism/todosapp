@@ -228,15 +228,7 @@ const Sidebar = ({
               categories.map((categ) => (categ === initialText ? text : categ))
             )
 
-            setTodos(
-              todos.map((todo) => {
-                todo.categ === initialText
-                  ? (todo.categ = text)
-                  : (todo.categ = todo.categ)
-
-                return todo
-              })
-            )
+            
 
             if (categParam && categParam === initialText) {
               navigate(`/?categ=${text}`)
@@ -261,6 +253,10 @@ const Sidebar = ({
           const updatedCategories = [...categories]
           updatedCategories.splice(index, 1)
           setCategories(updatedCategories)
+            
+          setTodos(
+              todos.filter((todo) => todo.categ !== text))
+          
         } else {
         }
       }
