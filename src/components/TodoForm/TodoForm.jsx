@@ -102,7 +102,7 @@ const TodoForm = ({ reqs }) => {
     setShowForm(false)
     setTitle("")
     setDescription("")
-    setSelectedOption("")
+    setSelectedOption(categParam && categories.includes(categParam) ? categParam : "")
   }
 
   const handleUpdate = async () => {
