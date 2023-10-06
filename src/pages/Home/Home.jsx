@@ -9,9 +9,9 @@ import TodoForm from "../../components/TodoForm/TodoForm"
 import TodosWrapper from "../../components/TodosWrapper/TodosWrapper"
 
 const Home = () => {
-  const { isAuth, isAdmin } = useContext(ctx)
+  const { isAuth } = useContext(ctx)
 
-  return isAuth ? <LoggedInUser isAdmin={isAdmin} /> : <LandingPage />
+  return isAuth ? <LoggedInUser /> : <LandingPage />
 }
 
 const LoggedInUser = () => {
@@ -21,6 +21,7 @@ const LoggedInUser = () => {
     deviceType,
     headerHeight,
     setLoading,
+    isAdmin,
   } = useContext(ctx)
   const getTodos = async () => {
     const {
@@ -201,7 +202,7 @@ const LoggedInUser = () => {
               currentMode,
               setCurrentMode,
               deviceType,
-              isAdmin
+              
             }}
           />
         </div>
