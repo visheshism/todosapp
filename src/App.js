@@ -22,6 +22,7 @@ export const ctx = createContext({ isAuth: false })
 
 function App() {
   const [isAuth, setIsAuth] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [headerHeight, setHeaderHeight] = useState(64)
   const [user, setUser] = useState({})
   const [showPopup, setShowPopup] = useState(false)
@@ -39,7 +40,7 @@ function App() {
       return "lg"
     }
   }
-  
+
   const [deviceType, setDeviceType] = useState(handleResize)
 
   window.onresize = () => {
@@ -49,18 +50,18 @@ function App() {
   useEffect(() => {
     let instance = 0
     const checkIsAuth = async () => {
-        instance === 0 && setLoading(true)
-        instance++
-      const res=await axiosReq("get", "/users/me", {}, null, false)
-      if(res.data.success){
-          setIsAuth(true)
-          instance === 1 && setLoading(false)
-          setUser(res.data.User)
-
-      }else{
-         setIsAuth(false)
-          instance === 1 && setLoading(false)
-          setUser({})
+      instance === 0 && setLoading(true)
+      instance++
+      const res = await axiosReq("get", "/users/me", {}, null, false)
+      if (res.data.success) {
+        setIsAuth(true)
+        instance === 1 && setLoading(false)
+        setUser(res.data.User)
+        setIsAdmin(res.data.isAdmin)
+      } else {
+        setIsAuth(false)
+        instance === 1 && setLoading(false)
+        setUser({})
 
       }
     }
@@ -87,6 +88,7 @@ function App() {
             setLoading,
             user,
             setUser,
+            isAdmin
           }}
         >
           <Loader loading={loading} />
@@ -121,18 +123,18 @@ function App() {
           </Routes>
           <Toaster position="top-center" reverseOrder={false} />
         </ctx.Provider>
-          <ToastContainer
-            position="top-right"
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick={false}
-            rtl={false}
-            pauseOnFocusLoss
-            draggable={false}
-            pauseOnHover={false}
-            theme="colored"
-            closeButton={false}
-            />
+        <ToastContainer
+          position="top-right"
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable={false}
+          pauseOnHover={false}
+          theme="colored"
+          closeButton={false}
+        />
       </Router>
     </>
   )

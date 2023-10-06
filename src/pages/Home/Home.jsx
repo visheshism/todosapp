@@ -9,9 +9,9 @@ import TodoForm from "../../components/TodoForm/TodoForm"
 import TodosWrapper from "../../components/TodosWrapper/TodosWrapper"
 
 const Home = () => {
-  const { isAuth } = useContext(ctx)
+  const { isAuth, isAdmin } = useContext(ctx)
 
-  return isAuth ? <LoggedInUser /> : <LandingPage />
+  return isAuth ? <LoggedInUser isAdmin={isAdmin} /> : <LandingPage />
 }
 
 const LoggedInUser = () => {
@@ -112,9 +112,8 @@ const LoggedInUser = () => {
 
       backendReq()
 
-      document.title = `Search: ${searchParam.slice(0, 40)} ${
-        searchCategParam ? "in " + searchCategParam : ""
-      } `
+      document.title = `Search: ${searchParam.slice(0, 40)} ${searchCategParam ? "in " + searchCategParam : ""
+        } `
     } else {
       if (!categParam && location.search === "") {
         todosArr = todos
@@ -151,9 +150,8 @@ const LoggedInUser = () => {
         className="flex justify-center 
         transition-all ease-in-out"
         style={{
-          height: `calc(100vh - ${
-            headerHeight + (deviceType === "xs" ? 65 : 20)
-          }px)`,
+          height: `calc(100vh - ${headerHeight + (deviceType === "xs" ? 65 : 20)
+            }px)`,
         }}
       >
         <Sidebar
@@ -202,7 +200,8 @@ const LoggedInUser = () => {
               setLoading,
               currentMode,
               setCurrentMode,
-              deviceType
+              deviceType,
+              isAdmin
             }}
           />
         </div>

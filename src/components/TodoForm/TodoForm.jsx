@@ -36,7 +36,8 @@ const TodoForm = ({ reqs }) => {
     setLoading,
     currentMode: mode,
     setCurrentMode,
-    deviceType
+    deviceType,
+    isAdmin
   } = reqs
 
   const {
@@ -214,7 +215,7 @@ const TodoForm = ({ reqs }) => {
                   <textarea
                     rows={Math.ceil(title.length / (window.innerWidth >= 1536 ? 39 : ["xs", "sm", "md"].includes(deviceType) ? 32 : 35))}
                     value={title}
-                    maxLength={80}
+                    maxLength={isAdmin ? 120 : 80}
                     readOnly
                     className={`resize-none w-full border border-gray-300 px-3 py-2 rounded mb-4 read-only:border-red-400 focus:outline-none break-all font-Manrope`}
                     spellCheck="false"
@@ -233,10 +234,10 @@ const TodoForm = ({ reqs }) => {
                         e.target.value.trim().length < 1 ? "" : e.target.value
                       )
                     }
-                    maxLength={80}
+                    maxLength={isAdmin ? 120 : 80}
                     className={`border border-gray-300 px-3 py-2 rounded mb-4 w-full read-only:border-red-400 font-Manrope ${EditingMode
-                        ? "focus:outline-slate-500"
-                        : "focus:outline-none"
+                      ? "focus:outline-slate-500"
+                      : "focus:outline-none"
                       }`}
                     spellCheck="false"
                     autoComplete="off"
@@ -245,7 +246,7 @@ const TodoForm = ({ reqs }) => {
                 )}
                 {(mode === "create" || EditingMode) && (
                   <span className="flex justify-end text-sm -mt-4">
-                    {title.length}/80
+                    {title.length}/{isAdmin ? '120' : '80'}
                   </span>
                 )}
               </div>
@@ -267,11 +268,11 @@ const TodoForm = ({ reqs }) => {
                         e.target.value.trim().length < 1 ? "" : e.target.value
                       )
                     }
-                    maxLength={400}
+                    maxLength={isAdmin ? 700 : 400}
                     readOnly={mode === "read" && !EditingMode ? "readonly" : null}
                     className={`resize-none w-full border border-gray-300 px-3 py-2 rounded mb-4 read-only:border-green-400 break-all font-Manrope customScroller ${EditingMode
-                        ? "focus:outline-slate-500"
-                        : "focus:outline-none"
+                      ? "focus:outline-slate-500"
+                      : "focus:outline-none"
                       }`}
                     spellCheck="false"
                     autoComplete="off"
@@ -279,7 +280,7 @@ const TodoForm = ({ reqs }) => {
                   />
                   {(mode === "create" || EditingMode) && (
                     <span className="flex justify-end text-sm -mt-4">
-                      {description.length}/400
+                      {description.length}/{isAdmin ? '700' : '400'}
                     </span>
                   )}
                 </div>
