@@ -202,7 +202,7 @@ const LoggedInUser = () => {
               currentMode,
               setCurrentMode,
               deviceType,
-              
+              isAdmin
             }}
           />
         </div>
