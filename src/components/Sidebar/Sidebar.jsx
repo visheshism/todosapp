@@ -253,7 +253,9 @@ const Sidebar = ({
           setCategories(updatedCategories)
 
           setTodos(prevTodos => prevTodos.filter((todo) => todo.categ !== text))
-
+          if (categParam && categParam === initialText) {
+            navigate("/")
+          }
         } else {
         }
       }
