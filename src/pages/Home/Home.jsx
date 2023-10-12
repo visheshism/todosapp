@@ -41,13 +41,15 @@ const LoggedInUser = () => {
   const [todos, setTodos] = useState([])
   const [categories, setCategories] = useState([])
 
-  useEffect(() => {
-    getTodos()
-    getCategs()
-  }, [])
-
   const sidebarComp = useRef(null)
   const sidebarToggleBtn = useRef(null)
+
+  const navigateMe = useNavigate()
+
+  useEffect(() => {
+    // Initial-rendering
+    getCategs().then(() => getTodos()).finally(() => { setTimeout(() => setLoadingData(false), 1500) })
+  }, [])
 
   const [sideContent, setSideContent] = useState(false)
   const [loadingData, setLoadingData] = useState(true)
@@ -101,61 +103,63 @@ const LoggedInUser = () => {
   }, [todos, categories])
 
   useEffect(() => {
-    let todosArr = []
-    if (searchParam) {
-      let backendQuery
-      backendQuery = `?query=${searchParam}`
+    if (todos.length > 0 || categories.length > 0) {
+      let todosArr = []
+      if (searchParam) {
+        let backendQuery
+        backendQuery = `?query=${searchParam}`
 
-      const backendReq = async () => {
-        await axiosReq("get", `/search${backendQuery}`)
-      }
-
-      if (searchCategParam) {
-        backendQuery += `&categ=${searchCategParam}`
-      }
-      todosArr = todos.filter((obj) => {
-        const { title, description, categ } = obj
-        const lowercaseSearch = searchParam.toLowerCase()
-
-        const titleMatch = title.toLowerCase().includes(lowercaseSearch)
-        const descriptionMatch = description
-          .toLowerCase()
-          .includes(lowercaseSearch)
-        const categMatch = categ.toLowerCase().includes(lowercaseSearch)
+        const backendReq = async () => {
+          await axiosReq("get", `/search${backendQuery}`)
+        }
 
         if (searchCategParam) {
-          return (
-            (titleMatch || descriptionMatch || categMatch) &&
-            categ === searchCategParam
-          )
-        } else {
-          return titleMatch || descriptionMatch || categMatch
+          backendQuery += `&categ=${searchCategParam}`
         }
-      })
+        todosArr = todos.filter((obj) => {
+          const { title, description, categ } = obj
+          const lowercaseSearch = searchParam.toLowerCase()
 
-      backendReq()
+          const titleMatch = title.toLowerCase().includes(lowercaseSearch)
+          const descriptionMatch = description
+            .toLowerCase()
+            .includes(lowercaseSearch)
+          const categMatch = categ.toLowerCase().includes(lowercaseSearch)
 
-      document.title = `Search: ${searchParam.slice(0, 40)} ${searchCategParam ? "in " + searchCategParam : ""
-        } `
-    } else {
-      if (!categParam && location.search === "") {
-        todosArr = todos
-        document.title = "Todos: All"
-      } else if (categParam && categories.includes(categParam)) {
-        todosArr = todos.filter((todo) => todo.categ === categParam)
-        document.title = "Todos: " + categParam
+          if (searchCategParam) {
+            return (
+              (titleMatch || descriptionMatch || categMatch) &&
+              categ === searchCategParam
+            )
+          } else {
+            return titleMatch || descriptionMatch || categMatch
+          }
+        })
+
+        backendReq()
+
+        document.title = `Search: ${searchParam.slice(0, 40)} ${searchCategParam ? "in " + searchCategParam : ""
+          } `
+      } else {
+        if (location.search === "") {
+          todosArr = todos
+          document.title = "Todos: All"
+        } else if (categParam) {
+          if (categories.includes(categParam)) {
+            todosArr = todos.filter((todo) => todo.categ === categParam)
+            document.title = "Todos: " + categParam
+          } else {
+            navigateMe("/")
+          }
+        } else {
+          navigateMe("/")
+        }
       }
+      
+      setCurrentTodos(todosArr)
+      setTimeout(() => setLoadingData(false), 1500)
     }
-    if (currentFilter === "completed") {
-      todosArr = todosArr.filter((todo) => todo.isCompleted === true)
-    } else if (currentFilter === "incomplete") {
-      todosArr = todosArr.filter((todo) => todo.isCompleted === false)
-    }
-
-    setSideContent(false)
-    setCurrentTodos(todosArr)
-    setTimeout(() => setLoadingData(false), 1500)
-  }, [location.search, currentFilter, todos])
+  }, [location.search, currentFilter, todos, categories])
 
   useEffect(() => {
     setLoadingData(true)

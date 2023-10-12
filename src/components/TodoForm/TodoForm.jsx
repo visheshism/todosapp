@@ -195,7 +195,8 @@ const TodoForm = ({ reqs }) => {
         categParam && categories.includes(categParam) ? categParam : ""
       )
     }
-  }, [mode, categParam])
+  }, [mode, categParam, categories])
+
   return (
     showForm && (
       <>
@@ -235,8 +236,8 @@ const TodoForm = ({ reqs }) => {
                     }
                     maxLength={80}
                     className={`border border-gray-300 px-3 py-2 rounded mb-4 w-full read-only:border-red-400 font-Manrope ${EditingMode
-                        ? "focus:outline-slate-500"
-                        : "focus:outline-none"
+                      ? "focus:outline-slate-500"
+                      : "focus:outline-none"
                       }`}
                     spellCheck="false"
                     autoComplete="off"
@@ -270,8 +271,8 @@ const TodoForm = ({ reqs }) => {
                     maxLength={400}
                     readOnly={mode === "read" && !EditingMode ? "readonly" : null}
                     className={`resize-none w-full border border-gray-300 px-3 py-2 rounded mb-4 read-only:border-green-400 break-all font-Manrope customScroller ${EditingMode
-                        ? "focus:outline-slate-500"
-                        : "focus:outline-none"
+                      ? "focus:outline-slate-500"
+                      : "focus:outline-none"
                       }`}
                     spellCheck="false"
                     autoComplete="off"
