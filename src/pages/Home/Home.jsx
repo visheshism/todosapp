@@ -165,13 +165,7 @@ const LoggedInUser = () => {
   useEffect(() => {
     setLoadingData(true)
   }, [location.search, currentFilter])
-
-  if (
-    (categParam && !categories.includes(categParam)) ||
-    (!categParam && !searchParam && location.search !== "")
-  )
-    return <Navigate to={"/"} />
-
+  
   return (
     <>
       <div
