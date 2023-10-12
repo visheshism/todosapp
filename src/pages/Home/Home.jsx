@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useState, useRef } from "react"
 import "./Home.css"
-import { Navigate, useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { ctx } from "../../App"
 import LandingPage from "../../components/LandingPage/LandingPage"
 import Sidebar from "../../components/Sidebar/Sidebar"
@@ -156,7 +156,7 @@ const LoggedInUser = () => {
           navigateMe("/")
         }
       }
-      
+
       setCurrentTodos(todosArr)
       setTimeout(() => setLoadingData(false), 1500)
     }
@@ -216,7 +216,7 @@ const LoggedInUser = () => {
           />
           <TodoForm
             reqs={{
-              todos,
+            todos,
               setTodos,
               currentTodo,
               setCurrentTodo,
