@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"a
+import { Link, useNavigate } from "react-router-dom"
 import { HiMenuAlt2 } from "react-icons/hi"
 import {
   FaCheck,
