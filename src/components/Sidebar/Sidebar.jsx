@@ -224,7 +224,14 @@ const Sidebar = ({
             setCategories(
               categories.map((categ) => (categ === initialText ? text : categ))
             )
-
+            setTodos(
+              todos.map((todo) => {
+                todo.categ === initialText
+                  ? (todo.categ = text)
+                  : (todo.categ = todo.categ)
+                return todo
+              })
+            )
 
 
             if (categParam && categParam === initialText) {
