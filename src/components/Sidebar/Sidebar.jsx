@@ -32,13 +32,10 @@ const Sidebar = ({
 
   useEffect(() => {
     setLoadingData(true)
+
+    return () => { setTimeout(() => setLoadingData(false), 1000) }
   }, [categories])
 
-  useEffect(() => {
-    if (loadingData) {
-      setTimeout(() => setLoadingData(false), 1000)
-    }
-  }, [loadingData])
 
   const UserNav = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -128,6 +125,7 @@ const Sidebar = ({
       }
 
       const SuccessHandler = async () => {
+        setLoadingData(true)
         const req = await axiosReq("post", "/categ", { categ: categN })
         const {
           data: { success, message, categories: dbCategs },
@@ -141,6 +139,7 @@ const Sidebar = ({
             message || "Error while creating the category, please try again.",
             5000
           )
+          setLoadingData(false)
         }
         setCategN("")
         setInputMode(false)
@@ -234,13 +233,14 @@ const Sidebar = ({
           } else {
             setEditing(false)
             setText(initialText)
+            setLoadingData(false)
           }
-          setLoadingData(false)
           setEditing(false)
         }
       }
 
       const handleDelete = async () => {
+        setLoadingData(true)
         const req = await axiosReq("delete", "/categ", { categ: text })
 
         const {
