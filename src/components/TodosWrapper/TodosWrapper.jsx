@@ -28,7 +28,7 @@ const TodosWrapper = ({ reqs }) => {
   const toggleTodoCompleted = (meIty) => {
     const activeTodo = todos.find((todo) => todo.meIty === meIty)
     updateTodo({ ...activeTodo, isCompleted: !activeTodo.isCompleted })
-    setTodos((prevTodos) =>
+    setTodos(prevTodos =>
       prevTodos.map((todo) =>
         todo.meIty === meIty
           ? { ...todo, isCompleted: !todo.isCompleted }
@@ -48,9 +48,8 @@ const TodosWrapper = ({ reqs }) => {
 
     return (
       <div
-        className={`relative inline-block mr-2 ${
-          sideContent && deviceType === "xs" ? "-z-10" : ""
-        }`}
+        className={`relative inline-block mr-2 ${sideContent && deviceType === "xs" ? "-z-10" : ""
+          }`}
       >
         <button
           className="flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600 font-Manrope"

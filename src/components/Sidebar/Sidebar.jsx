@@ -14,7 +14,6 @@ import { axiosReq, handleToastify } from "../../utils"
 
 const Sidebar = ({
   reqs: {
-    todos,
     setTodos,
     todosLength,
     categParam,
@@ -253,8 +252,7 @@ const Sidebar = ({
           updatedCategories.splice(index, 1)
           setCategories(updatedCategories)
 
-          setTodos(
-            todos.filter((todo) => todo.categ !== text))
+          setTodos(prevTodos => prevTodos.filter((todo) => todo.categ !== text))
 
         } else {
         }

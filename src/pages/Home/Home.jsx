@@ -193,7 +193,6 @@ const LoggedInUser = () => {
             loadingData,
             setLoadingData,
             setTodos,
-            todos,
             sidebarComp,
             sidebarToggleBtn
           }}
@@ -216,7 +215,6 @@ const LoggedInUser = () => {
           />
           <TodoForm
             reqs={{
-            todos,
               setTodos,
               currentTodo,
               setCurrentTodo,
