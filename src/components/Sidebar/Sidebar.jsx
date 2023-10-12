@@ -24,11 +24,13 @@ const Sidebar = ({
     setSideContent,
     deviceType,
     sideContent,
+    sidebarComp,
+    sidebarToggleBtn
   },
 }) => {
   const navigate = useNavigate()
   const [loadingData, setLoadingData] = useState(true)
-  
+
   useEffect(() => {
     setLoadingData(true)
   }, [categories])
@@ -94,23 +96,20 @@ const Sidebar = ({
 
       return (
         <div
-          className={`relative flex items-center justify-around ${
-            home ? "bg-indigo-500  rounded-md" : "bg-transparent"
-          }`}
+          className={`relative flex items-center justify-around ${home ? "bg-indigo-500  rounded-md" : "bg-transparent"
+            }`}
         >
           <Link
             to="/"
-            className={`px-2 py-2 focus:outline-none tracking-wider text-sm text-left mr-3 group-hover:mr-0 min-w-[92px] ${
-              home ? " text-slate-100" : "text-indigo-500"
-            }`}
+            className={`px-2 py-2 focus:outline-none tracking-wider text-sm text-left mr-3 group-hover:mr-0 min-w-[92px] ${home ? " text-slate-100" : "text-indigo-500"
+              }`}
             onClick={() => setSideContent(false)}
           >
             All Todos
           </Link>
           <div
-            className={`ml-4 mr-1 ${
-              home ? "text-indigo-500 bg-slate-100 " : "bg-slate-500 text-white"
-            } rounded-full h-6 w-6 flex items-center justify-center`}
+            className={`ml-4 mr-1 ${home ? "text-indigo-500 bg-slate-100 " : "bg-slate-500 text-white"
+              } rounded-full h-6 w-6 flex items-center justify-center`}
           >
             <span className="text-xs font-medium">
               {todosLength.all > 999 ? "99+" : todosLength.all}
@@ -228,7 +227,7 @@ const Sidebar = ({
               categories.map((categ) => (categ === initialText ? text : categ))
             )
 
-            
+
 
             if (categParam && categParam === initialText) {
               navigate(`/?categ=${text}`)
@@ -253,37 +252,34 @@ const Sidebar = ({
           const updatedCategories = [...categories]
           updatedCategories.splice(index, 1)
           setCategories(updatedCategories)
-            
+
           setTodos(
-              todos.filter((todo) => todo.categ !== text))
-          
+            todos.filter((todo) => todo.categ !== text))
+
         } else {
         }
       }
 
       return (
         <div
-          className={`relative flex items-center group justify-around my-2 py-1 ${
-            currentURI ? "bg-indigo-500" : "bg-transparent"
-          } rounded-md pl-1 pr-2`}
+          className={`relative flex items-center group justify-around my-2 py-1 ${currentURI ? "bg-indigo-500" : "bg-transparent"
+            } rounded-md pl-1 pr-2`}
         >
           {editing ? (
             <input
               type="text"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className={`bg-transparent text-sm px-0.5 py-1 focus:outline-none max-w-[80px] tracking-wider border-b-2 border-transparent  ${
-                currentURI
-                  ? "text-slate-100 focus:border-slate-100"
-                  : "focus:border-slate-400 "
-              }`}
+              className={`bg-transparent text-sm px-0.5 py-1 focus:outline-none max-w-[80px] tracking-wider border-b-2 border-transparent  ${currentURI
+                ? "text-slate-100 focus:border-slate-100"
+                : "focus:border-slate-400 "
+                }`}
             />
           ) : (
             <Link
               to={`/?categ=${text}`}
-              className={`px-1 py-1 focus:outline-none tracking-wider text-sm max-w-[92px] min-w-[92px] break-all text-left mr-12  group-hover:mr-0 ${
-                currentURI ? "text-slate-100" : "text-indigo-500"
-              }`}
+              className={`px-1 py-1 focus:outline-none tracking-wider text-sm max-w-[92px] min-w-[92px] break-all text-left mr-12  group-hover:mr-0 ${currentURI ? "text-slate-100" : "text-indigo-500"
+                }`}
               onClick={() => setSideContent(false)}
             >
               {text}
@@ -323,11 +319,10 @@ const Sidebar = ({
           )}
           {!editing && (
             <div
-              className={`ml-6 ${
-                currentURI
-                  ? "text-indigo-500 bg-slate-100 "
-                  : "bg-slate-500 text-white"
-              } rounded-full h-6 w-6 flex items-center justify-center group-hover:hidden absolute right-2`}
+              className={`ml-6 ${currentURI
+                ? "text-indigo-500 bg-slate-100 "
+                : "bg-slate-500 text-white"
+                } rounded-full h-6 w-6 flex items-center justify-center group-hover:hidden absolute right-2`}
             >
               <span className="text-xs font-medium">{count}</span>
             </div>
@@ -338,9 +333,8 @@ const Sidebar = ({
 
     return (
       <div
-        className={`bg-white px-4 pt-4 max-h-[100%] rounded-[1.2rem] overflow-y-scroll categList shadow-xl border-[1px] border-slate-200 ${
-          ["xs", "sm"].includes(deviceType) && "absolute"
-        }`}
+        className={`bg-white px-4 pt-4 max-h-[100%] rounded-[1.2rem] overflow-y-scroll categList shadow-xl border-[1px] border-slate-200 ${["xs", "sm"].includes(deviceType) && "absolute"
+          }`}
       >
         {loadingData ? (
           <SkeletonCategories />
@@ -368,7 +362,7 @@ const Sidebar = ({
       <div className="p-2 pt-4 flex flex-col bg-white justify-between rounded-[2rem] shadow-xl border-[1px] border-slate-200 z-10 mr-3">
         <button
           className="my-5 hover:bg-indigo-800 hover:text-white focus:outline-none p-2 rounded-xl text-xl transition-all ease-in-out shadow-md focus:ring focus:ring-indigo-600 focus:ring-offset-white focus:ring-offset-2"
-          onClick={() => setSideContent(!sideContent)}
+          onClick={() => setSideContent(!sideContent)} ref={sidebarToggleBtn}
         >
           <HiMenuAlt2 />
         </button>
@@ -377,11 +371,7 @@ const Sidebar = ({
       </div>
       {sideContent && (
         <div
-          className={`transition-all -translate-x-[120%] opacity-0 ${
-            !sideContent ? "" : "toRight"
-          } px-0 bg-transparent ease-in-out py-1.5  ${
-            !["xs", "sm"].includes(deviceType) && "mr-1 "
-          }`}
+          className={`transition-all -translate-x-[120%] opacity-0 ${!sideContent ? "" : "toRight"} px-0 bg-transparent ease-in-out py-1.5  ${!["xs", "sm"].includes(deviceType) && "mr-1"}`} ref={sidebarComp}
         >
           {<CategoryList />}
         </div>

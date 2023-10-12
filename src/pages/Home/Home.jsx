@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react"
+import React, { useContext, useEffect, useMemo, useState, useRef } from "react"
 import "./Home.css"
 import { Navigate, useLocation } from "react-router-dom"
 import { ctx } from "../../App"
@@ -46,6 +46,9 @@ const LoggedInUser = () => {
     getCategs()
   }, [])
 
+  const sidebarComp = useRef(null)
+  const sidebarToggleBtn = useRef(null)
+
   const [sideContent, setSideContent] = useState(false)
   const [loadingData, setLoadingData] = useState(true)
   const [currentTodos, setCurrentTodos] = useState([])
@@ -59,6 +62,26 @@ const LoggedInUser = () => {
   const categParam = queryParams.get("categ")
   const searchParam = queryParams.get("q")
   const searchCategParam = queryParams.get("c")
+
+  document.onclick = (e) => {
+    const isDescendantOfSidebar = (target, sidebar) => {
+      if (!target || !sidebar) return false
+      if (target === sidebar) return true
+      let node = target.parentElement
+
+      while (node) {
+        if (node === sidebar) return true
+        node = node.parentElement
+      }
+      return false
+    }
+
+    if (sideContent) {
+      if (!isDescendantOfSidebar(e.target, sidebarToggleBtn.current) && !isDescendantOfSidebar(e.target, sidebarComp.current)) {
+        return setSideContent(false)
+      }
+    }
+  }
 
   const todosLength = useMemo(() => {
     if (categories.length > 0) {
@@ -112,9 +135,8 @@ const LoggedInUser = () => {
 
       backendReq()
 
-      document.title = `Search: ${searchParam.slice(0, 40)} ${
-        searchCategParam ? "in " + searchCategParam : ""
-      } `
+      document.title = `Search: ${searchParam.slice(0, 40)} ${searchCategParam ? "in " + searchCategParam : ""
+        } `
     } else {
       if (!categParam && location.search === "") {
         todosArr = todos
@@ -150,11 +172,7 @@ const LoggedInUser = () => {
       <div
         className="flex justify-center 
         transition-all ease-in-out"
-        style={{
-          height: `calc(100vh - ${
-            headerHeight + (deviceType === "xs" ? 65 : 20)
-          }px)`,
-        }}
+        style={{ height: `calc(100vh - ${headerHeight + (deviceType === "xs" ? 65 : 20)}px)`, }}
       >
         <Sidebar
           reqs={{
@@ -171,6 +189,8 @@ const LoggedInUser = () => {
             setLoadingData,
             setTodos,
             todos,
+            sidebarComp,
+            sidebarToggleBtn
           }}
         />
         <div className="content px-4 text-justify overflow-y-scroll flex-grow mx-auto w-full">
@@ -186,7 +206,7 @@ const LoggedInUser = () => {
               currentFilter,
               setCurrentFilter,
               deviceType,
-              sideContent,
+              sideContent
             }}
           />
           <TodoForm
