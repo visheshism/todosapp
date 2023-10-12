@@ -195,7 +195,8 @@ const TodoForm = ({ reqs }) => {
         categParam && categories.includes(categParam) ? categParam : ""
       )
     }
-  }, [mode, categParam])
+  }, [mode, categParam, categories])
+
   return (
     showForm && (
       <>
