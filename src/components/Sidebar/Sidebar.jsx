@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"a
 import { HiMenuAlt2 } from "react-icons/hi"
 import {
   FaCheck,
@@ -148,7 +148,8 @@ const Sidebar = ({
       return (
         <div
           className={`relative min-w-full max-w-[96px] px-3 bg-slate-100 py-1 rounded-md hover:bg-slate-200 text-slate-800 group flex mb-3 mt-3`}
-        >
+        onClick={(e) => { e.stopPropagation() }}
+          >
           {!inputMode ? (
             <button
               className="flex items-center"
@@ -294,7 +295,7 @@ const Sidebar = ({
           )}
 
           {editing ? (
-            <span className="invisible group-hover:visible flex items-center space-x-2 ml-2">
+            <span className="invisible group-hover:visible flex items-center space-x-2 ml-2" onClick={(e) => { e.stopPropagation() }}>
               <button
                 onClick={handleCancel}
                 className={currentURI ? "text-slate-100" : "text-gray-500"}
@@ -309,7 +310,7 @@ const Sidebar = ({
               </button>
             </span>
           ) : (
-            <span className="hidden group-hover:flex items-center space-x-2 ml-2">
+            <span className="hidden group-hover:flex items-center space-x-2 ml-2" onClick={(e) => { e.stopPropagation() }}>
               <button
                 onClick={handleEdit}
                 className={currentURI ? "text-slate-100" : "text-gray-500"}
