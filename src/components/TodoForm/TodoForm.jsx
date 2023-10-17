@@ -25,7 +25,6 @@ export const updateTodo = async (updatedTodo, setLoading) => {
 
 const TodoForm = ({ reqs }) => {
   const {
-    todos,
     setTodos,
     currentTodo,
     setCurrentTodo,
@@ -91,7 +90,7 @@ const TodoForm = ({ reqs }) => {
     if (success) {
       handleToastify(res.data.success, "Todo has been created.", 2500)
 
-      setTodos([{ ...todo }, ...todos])
+      setTodos(prevTodos => [{ ...todo }, ...prevTodos])
     } else {
       handleToastify(
         false,
@@ -165,7 +164,7 @@ const TodoForm = ({ reqs }) => {
     toast.dismiss()
     if (success) {
       handleToastify(res.data.success, "Todo has been deleted.", 2500)
-      setTodos(todos.filter((todo) => todo.meIty !== currentTodo.meIty))
+      setTodos(prevTodos => prevTodos.filter((todo) => todo.meIty !== currentTodo.meIty))
     } else {
       handleToastify(
         false,
@@ -237,8 +236,8 @@ const TodoForm = ({ reqs }) => {
                     }
                     maxLength={isAdmin ? 120 : 80}
                     className={`border border-gray-300 px-3 py-2 rounded mb-4 w-full read-only:border-red-400 font-Manrope ${EditingMode
-                        ? "focus:outline-slate-500"
-                        : "focus:outline-none"
+                      ? "focus:outline-slate-500"
+                      : "focus:outline-none"
                       }`}
                     spellCheck="false"
                     autoComplete="off"
@@ -272,8 +271,8 @@ const TodoForm = ({ reqs }) => {
                     maxLength={isAdmin ? 700 : 400}
                     readOnly={mode === "read" && !EditingMode ? "readonly" : null}
                     className={`resize-none w-full border border-gray-300 px-3 py-2 rounded mb-4 read-only:border-green-400 break-all font-Manrope customScroller ${EditingMode
-                        ? "focus:outline-slate-500"
-                        : "focus:outline-none"
+                      ? "focus:outline-slate-500"
+                      : "focus:outline-none"
                       }`}
                     spellCheck="false"
                     autoComplete="off"
