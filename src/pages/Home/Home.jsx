@@ -156,7 +156,13 @@ const LoggedInUser = () => {
           navigateMe("/")
         }
       }
-
+      
+      if (currentFilter === "completed") {
+        todosArr = todosArr.filter((todo) => todo.isCompleted === true)
+      } else if (currentFilter === "incomplete") {
+        todosArr = todosArr.filter((todo) => todo.isCompleted === false)
+      }
+      
       setCurrentTodos(todosArr)
       setTimeout(() => setLoadingData(false), 1500)
     }
