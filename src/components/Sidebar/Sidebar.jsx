@@ -33,7 +33,7 @@ const Sidebar = ({
   useEffect(() => {
     setLoadingData(true)
 
-    return () => { setTimeout(() => setLoadingData(false), 1000) }
+    setTimeout(() => setLoadingData(false), 1000)
   }, [categories])
 
 
