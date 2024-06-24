@@ -49,6 +49,6 @@ Please refer to the codebase for detailed implementation details of these functi
 This project was developed by [Vishesh Singh](https://github.com/visheshism).
 
 ## License
-This project is licensed under the (MIT License)[LICENSE].
+This project is licensed under the [MIT License](LICENSE).
 
 Feel free to contribute to this project by making a pull request.
